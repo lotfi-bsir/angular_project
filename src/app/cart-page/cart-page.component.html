@@ -1,0 +1,46 @@
+<div *ngIf="cartProds.length > 0; else elseBlock">
+  <table class="highlight">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Label</th>
+        <th>Price</th>
+        <th>Amount</th>
+        <th>Action </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of cartProds">
+        <td><img lazyLoad="{{p.image}}" alt="" width="150px"></td>
+        <td>{{p.name}}</td>
+        <td>{{p.label}}</td>
+        <td>{{p.price}} $</td>
+        <td>x{{p.amount}}</td>
+        <td>
+          <a (click)="addProd(p)" class="waves-effect waves-light btn green" style="margin-right: 20px;"><i class='bx bx-message-square-add bx-burst-hover'></i>Add</a>
+          <a (click)="delProd(p)" class="waves-effect waves-light btn red"><i class='bx bxs-message-square-x bx-flashing-hover'></i> Remove</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col">
+      <h4>Total price: {{prod_sum}} $</h4>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <div class="cart-status">
+    <h5>Your Amazon Cart is empty
+    </h5>
+
+  </div>
+</ng-template>
+<div class="check">
+
+  <button routerLink="/" class="btn btn-success" style="margin-right: 5px;"><i class='bx bxs-cart-add bx-tada-hover'></i>shop more</button>
+  <button routerLink="/checkout" class="btn btn-outline-info" >check out</button>
+</div>
